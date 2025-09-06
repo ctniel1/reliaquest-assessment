@@ -1,17 +1,18 @@
 import React from 'react';
 import { createUseStyles } from 'react-jss';
-import { Pokemon } from '../../hooks/useGetPokemons';
+import { PokemonBasic } from '../../hooks/useGetPokemons';
 
 type ListItemProps = {
-  pokemon: Pokemon;
+  pokemon: PokemonBasic;
+  handleClick: () => void;
 };
 
-export const ListItem: React.FC<ListItemProps> = ({ pokemon, ...props }) => {
+export const ListItem: React.FC<ListItemProps> = ({ pokemon, handleClick, ...props }) => {
   const classes = useStyles();
   const { id, name, image, number, types } = pokemon;
 
   return (
-    
+    <div {...props} className={classes.item} onClick={handleClick}>
         <div {...props} className={classes.item}>
           <img src={image} alt={name} className={classes.image} />
           <div className={classes.name}>{`${number} - ${name}`}</div>
@@ -23,6 +24,7 @@ export const ListItem: React.FC<ListItemProps> = ({ pokemon, ...props }) => {
             ))}
           </div>
         </div>
+    </div>
   );
 };
 
