@@ -1,6 +1,6 @@
 import React from 'react';
 import { createUseStyles } from 'react-jss';
-import { PokemonDetail, useGetPokemon } from '../../hooks/useGetPokemon';
+import { useGetPokemon } from '../../hooks/useGetPokemon';
 import { PokemonBasic } from 'src/hooks/useGetPokemons';
 
 type PokemonDetailsProps = {
@@ -18,7 +18,7 @@ export const PokemonDetails: React.FC<PokemonDetailsProps> = ({ selectedPokemon,
   return (
     <div className={classes.backdrop}>
       <div {...props} className={classes.modal}>
-        <button onClick={onClose} style={{ position: 'absolute', top: 8, right: 8 }}>X</button>
+        <button onClick={onClose} className={classes.closeButton}>X</button>
         {loading && <div>Loading...</div>}
         {!loading && (
           <>
@@ -65,6 +65,16 @@ const useStyles = createUseStyles(
       maxWidth: 400,
       position: 'relative',
       zIndex: 1001,
+    },
+    closeButton: {
+      position: 'absolute',
+      top: 16,
+      right: 16,
+      background: 'transparent',
+      border: 'none',
+      fontSize: 18,
+      cursor: 'pointer',
+      color: '#fff',
     },
     image: {
       width: 200,

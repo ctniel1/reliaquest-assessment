@@ -13,17 +13,15 @@ export const ListItem: React.FC<ListItemProps> = ({ pokemon, handleClick, ...pro
 
   return (
     <div {...props} className={classes.item} onClick={handleClick}>
-        <div {...props} className={classes.item}>
-          <img src={image} alt={name} className={classes.image} />
-          <div className={classes.name}>{`${number} - ${name}`}</div>
-          <div className={classes.types}>
-            {types.map((type) => (
-              <span key={type} className={classes.type}>
-                {type}
-              </span>
-            ))}
-          </div>
-        </div>
+      <img src={image} alt={name} className={classes.image} />
+      <div className={classes.name}>{`${number} - ${name}`}</div>
+      <div className={classes.types}>
+        {types.map((type) => (
+          <span key={type} className={classes.type}>
+            {type}
+          </span>
+        ))}
+      </div>
     </div>
   );
 };
@@ -33,14 +31,20 @@ const useStyles = createUseStyles(
     item: {
       display: 'flex',
       alignItems: 'center',
+      justifyContent: 'space-between',
       border: '1px solid #ddd',
       borderRadius: 8,
       padding: 16,
-      margin: 8,
-      width: '100%',
+      margin: '40px auto',
+      width: '50%',
+      gap: 16,
       boxSizing: 'border-box',
       boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
-      '&:hover': { backgroundColor: '#f9f9f9' }
+      transition: 'background-color 0.3s',
+      '&:hover': {
+        backgroundColor: '#a0a0a0',
+        cursor: 'pointer',
+      },
     },
     image: {
       width: 100,
@@ -60,6 +64,7 @@ const useStyles = createUseStyles(
       padding: '2px 6px',
       marginRight: 4,
       fontSize: 12,
+      color: '#555',
     },
   },
   { name: 'ListItem' }
